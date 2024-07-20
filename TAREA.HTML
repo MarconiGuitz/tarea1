@@ -1,0 +1,653 @@
+<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths"><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitudes - solicitud_inscrip_comerciante_individual_empresa</title>
+     
+
+    <script type="text/javascript">
+        function newROW(up, limit, min = 1) { 
+            if (up && document.getElementById("Rows").value < limit) {
+                document.getElementById("Rows").value++;
+                document.getElementById("row" + (document.getElementById("Rows").value)).hidden = false;
+            }
+            else {
+                if (!up && document.getElementById("Rows").value > 1) {
+                    document.getElementById("row" + (document.getElementById("Rows").value)).hidden = true;
+                    document.getElementById("Rows").value--;
+                }
+            }
+            if (document.getElementById("Rows").value == min) {
+                document.getElementById("minus").hidden = true;
+            }
+            else {
+                document.getElementById("minus").hidden = false;
+            }
+            if (document.getElementById("Rows").value == limit) {
+                document.getElementById("plus").hidden = true;
+            }
+            else {
+                document.getElementById("plus").hidden = false;
+            }
+        }
+
+        function regresar() {
+
+            document.getElementById("enviar").style.display = 'none';
+            document.getElementById("cancelar").style.display = 'none';
+            document.getElementById("aceptar").style.display = 'block';
+            
+            document.getElementById("mensajeModal").innerHTML = "Solicitud Descargando";
+            var time = 15000;
+            setTimeout(function () {
+                document.getElementById("aceptar").innerHTML = "Descargando en 2";
+            }, time);
+            setTimeout(function () {
+                document.getElementById("aceptar").innerHTML = "Descargando en 1";
+            }, time * 2);
+            setTimeout(function () {
+                document.getElementById("mensajeModal").innerHTML = "Solicitud Descargada";
+
+                document.getElementById("aceptar").innerHTML = "Aceptar";
+
+                document.getElementById("aceptar").classList.remove("disabled");
+
+            }, time * 3);
+        }
+
+        function DisableEnterSubmit(key) { 
+            if (key == 13) {
+                return false;
+            }
+        }
+        function valor_null_d() { 
+            if (document.getElementById("DPI").value == 0) {
+                if (document.getElementById("DPI").onclick) {
+                    document.getElementById("DPI").value = "";
+                }
+            }
+        }
+        function valor_null_a() {
+            if (document.getElementById("AÑO_EXP").value == 0) {
+                if (document.getElementById("AÑO_EXP").onclick) {
+                    document.getElementById("AÑO_EXP").value = "";
+                }
+            }
+        }
+        function valor_null_n() {
+            if (document.getElementById("NIT").value == 0) {
+                if (document.getElementById("NIT").onclick) {
+                    document.getElementById("NIT").value = "";
+                }
+            }
+        }
+        
+        function opcion_documento() {
+            if (document.getElementById("PASAPORTE_PER").checked) {
+                document.getElementById("DPI_PER").disabled = true;
+                document.getElementById("PASAPORTE_PER").value = true;
+                document.getElementById("PASAPORTE").style.display = 'block';
+            } else {
+                document.getElementById("DPI_PER").disabled = false;
+                document.getElementById("PASAPORTE").value = null;
+                document.getElementById("PASAPORTE").style.display = 'none';
+            }
+            if (document.getElementById("DPI_PER").checked) {
+                document.getElementById("PASAPORTE_PER").disabled = true;
+                document.getElementById("DPI_PER").value = true;
+                document.getElementById("DPI").style.display = 'block';
+            } else {
+                document.getElementById("PASAPORTE_PER").disabled = false;
+                document.getElementById("DPI").value = null;
+                document.getElementById("DPI").style.display = 'none';
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+    
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading fondogratuito">
+                <div class="form-group">
+                    <img src="/HTML2/logo.png" style="width: 320px; height:45px; padding:10px;" class="img-responsive floatl-left" alt="Cinque Terre">
+                    <center>
+                        <div class="input-group" style="margin:auto; background:#c1dddd; color:#000000; margin-right: 30px;">
+                            <span style="font-size:16px;">Número Formato</span>
+                            <input style="width:100px; background-color:#ffffff !important;font-size: 12px;" name="correlativo" id="correlativo" value="0" disabled="">
+                            <span style="font-size:16px;">Código</span>&nbsp;
+                            <input style="width:45px; background-color:#ffffff !important ;font-size: 12px;" value="0" disabled="">
+                        </div>
+                        <h5><b>Este formato de solicitud es GRATUITO, PROHIBIDO su venta.</b></h5>
+                    </center>
+                </div>
+                
+
+<div class="text-center text-danger" style="font-size:16px;">
+    
+</div>
+<form action="/formatoSolicitudes/Solicitudes/Pdf_inscp_comerciante_ind_empresa" class="contact100-form validate-form" enctype="multipart/form-data" method="post" onkeydown="return DisableEnterSubmit(event.keyCode);">    <h5 style="margin-top:1px;margin-bottom:1px;" class="text-center"><b>SOLICITUD DE INSCRIPCIÓN DE COMERCIANTE INDIVIDUAL Y EMPRESA </b></h5>
+    <h6 style="margin-top:1px;margin-bottom:1px;"><b>Señor Registrador Mercantil General de la República.</b></h6>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon"></span>
+        <span style="font-size:12px;"><b>Primer Nombre</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="P_NOMBRE" id="P_NOMBRE" size="50">
+        <span class="input-group-addon"></span>
+        <span style="font-size:12px;"><b>Segundo Nombre</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="S_NOMBRE" id="S_NOMBRE" size="40">
+        <span class="input-group-addon"></span>
+        <span style="font-size:12px;"><b>Otro Nombre</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="O_NOMBRE" id="O_NOMBRE" size="35">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon"></span>
+        <span style="font-size:12px;"><b>Primer Apellido</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="P_APELLIDO" id="P_APELLIDO" size="50">
+        <span class="input-group-addon"></span>
+        <span style="font-size:12px;"><b>Segundo Apellido</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="S_APELLIDO" id="S_APELLIDO" size="40">
+        <span class="input-group-addon"></span>
+        <span style="font-size:12px;"><b>Apellido Casada</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="A_CASADA" id="A_CASADA" size="30">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon" style="font-size:12px;"><b>de</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="EDAD" id="EDAD" size="10" value="0">
+        <span class="input-group-addon" style="font-size:12px;"><b>Años</b></span>
+        <select style="line-height: 20px" name="ESTADO_CIVIL" class="form-control input-sm" width="380" id="ESTADO_CIVIL">
+            <option value="">- Seleccione una Opcion -</option>
+            <option>Soltero</option>
+            <option>Casado</option>
+        </select>
+        <span class="input-group-addon" style="font-size:12px;">Nacionalidad</span>
+        <input style="font-size:12px;" class="form-control input-sm" name="NACIONALIDAD" id="NACIONALIDAD" size="50">
+    </div>
+    <br>
+    <div class="input-group">
+        <span style="font-size:12px;"><b>Profesión u Oficio</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="PROFESION" id="PROFESION" size="75">
+        <span class="input-group-addon"></span>
+        <span style="font-size:12px;"><b>con domicilio en el Departamento de</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="DEPARTAMENTO" id="DEPARTAMENTO" size="100">
+    </div>
+    <br>
+    <div class="input-group">
+        <span style="font-size:12px;"><b>Con Residencia en:</b></span>
+            <input style="font-size:12px;" class="form-control input-sm" name="DIRECCION" id="DIRECCION" size="180">
+            </div>  
+    <div class="input-group">
+        <span class="input-group-addon" style="font-size: 11px">DOCUMENTO DE IDENTIFICACIÓN</span>
+        &nbsp;<input type="checkbox" name="PASAPORTE_PER" id="PASAPORTE_PER" onclick="opcion_documento()"> &nbsp;PASAPORTE<br>
+        &nbsp;<input type="checkbox" name="DPI_PER" id="DPI_PER" onclick="opcion_documento()"> <span style="font-size:11px;"> &nbsp;DOCUMENTO PERSONAL DE IDENTIFICACION (DPI)</span><br>
+        <label id="seleccion_DPI_Pasaporte" style="color:#ff0000;"></label>
+        <input class="form-control" size="30" placeholder="ingrese su pasaporte" name="PASAPORTE" id="PASAPORTE" style="display:none; height:28px; font-size:12px;">
+        <input class="form-control" size="30" placeholder="ingrese su dpi" name="DPI" id="DPI" value="0" style="display:none; height:28px; font-size:12px;" onclick="valor_null_d()">
+            </div>
+    <div class="input-group">
+        <span class="input-group-addon" style="font-size:12px;"><b>Nit:</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="NIT" id="NIT" size="30" onclick="valor_null_n()">
+        <span class="input-group-addon" style="font-size:12px;"><b>No. De Teléfono y/o Celular:</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="TELEFONO" id="TELEFONO" size="30">
+        <span class="input-group-addon" style="font-size:12px;"><b>Correo Electrónico:</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" placeholder="ejemplo@gmail.com" name="CORREO" id="CORREO" size="72">
+    </div>
+    <h6 style="margin-top:2px;margin-bottom:2px;" class="text-center"><b>Atentamente: </b></h6>
+    <h5 style="margin-top:2px;margin-bottom:1px;" class="text-center"><b>PIDO:</b></h5>
+    <div class="input-group">
+        <span class="input-group-addon" style="font-size:12px;"></span>
+        <span><b>1)</b></span>
+        &nbsp;&nbsp;<input type="checkbox" class="custom-control-input" name="INSCRI_COMERCIANTE_INDIVIDUAL" id="INSCRI_COMERCIANTE_INDIVIDUAL" size="22" onclick="checkIfChecked()" ;="">&nbsp;&nbsp;<span><b>Que se me inscriba como comerciante individual</b></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="selecion" style="color:#ff0000"></label>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" style="font-size:12px;"></span>
+        <span><b>2)</b></span>
+        &nbsp;&nbsp;<input type="checkbox" class="custom-control-input" name="INSCRI_EMPRESA" id="INSCRI_EMPRESA" size="22" onclick="checkIfChecked()">
+        &nbsp;&nbsp;<span><b>Que se inscriba la siguiente empresa de mi propiedad o Propiedad de:</b></span>
+    </div>
+    <div class="input-group">
+            <input class="form-control input-sm" style="font-size: 12px; background-color: #ffffff !important;" name="NOMBRE_PROPIETARIO" id="NOMBRE_PROPIETARIO" size="180" disabled="">
+                    </div>
+    <div class="input-group">
+        <span style="font-size:12px;"><b>Nombre Comercial:&nbsp;</b></span>
+            <input style="font-size:12px;" class="form-control input-sm" name="NOMBRE_COMERCIAL" id="NOMBRE_COMERCIAL" size="180">
+            </div>
+    <div class="input-group" style="margin-top:5px;">
+        <span style="font-size:12px;"><b>Dirección Completa:</b></span>
+
+            <input style="font-size:12px;" class="form-control input-sm" name="DIRECCION_COMERCIAL" id="DIRECCION_COMERCIAL" size="180">
+            </div>
+    <div class="input-group col-lg-12 ">
+        <span class="input-group-addon text-right"><b>Objeto:</b></span>
+    </div>
+        <textarea class="form-control" style="font-size:12px; text-transform: uppercase; text-align: justify" name="OBJETO" id="OBJETO" rows="4" maxlength="2000"></textarea>
+    <br>
+    <div class="input-group">
+        <span><b>Fecha de inicio de actividades:</b></span>
+        <input type="checkbox" class="custom-control-input" name="INICIO" id="INICIO" size="10" onclick="inscrib_iniciales()">
+        &nbsp;&nbsp;&nbsp; <span><b>al inscribirse</b></span>
+        &nbsp;<input type="checkbox" class="custom-control-input" name="AL_INSCRIBIRSE" id="AL_INSCRIBIRSE" size="100" onclick="inscrib_iniciales()">
+        &nbsp;&nbsp;&nbsp;<span><b>Capital: Q.</b></span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="selecion_1" style="color:#ff0000"></label>
+    </div>
+    <div class="input-group">
+        <input type="date" class="input-sm " name="FECHA_INICIO" id="FECHA_INICIO" value="1/01/0001 00:00:00" disabled="">
+        &nbsp;&nbsp;<label id="select_fecha" style="color:#ff0000"></label>
+        <span class="input-group-addon" style="font-size:12px;"></span>
+        <input class="input-sm " name="CAPITAL" id="CAPITAL" size="35" style="margin-left:95%; font-size:12px;">
+    </div>
+    <br>
+    <div class="input-group">
+        <span class="input-group-addon" style="font-size:12px;"><b>Categoría: Única</b></span>
+        &nbsp;<input type="checkbox" class="custom-control-input " name="CATEGORIA_UNICA" id="CATEGORIA_UNICA" size="10" onclick="select_suc_cat_unica()">
+        &nbsp;<span class="input-group-addon" style="font-size:12px;"><b>Sucursal</b></span>
+        &nbsp;<input type="checkbox" class="custom-control-input " name="CATEGORIA_SUCURSAL" id="CATEGORIA_SUCURSAL" size="10" onclick="select_suc_cat_unica()">
+        <label id="seleccion_2" style="color: #ff0000"></label>
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" style="font-size:12px;"><b>Administrador, Gerente o Factor:</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="CARGO" id="CARGO" size="180">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" style="font-size:12px;"><b>1) Si es casado, indique régimen matrimonial</b></span>
+        <input class="form-control input-sm " name="REGIMEN_MATRIMONIAL" id="REGIMEN_MATRIMONIAL" size="180">
+    </div>
+    <div class="input-group">
+        <span style="font-size:13px;" class="input-group-addon"><b>2) Si el Propietario está inscrito como comerciante ó Sociedad, indique No.</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="REGISTRO_COMERCIANTE" id="REGISTRO_COMERCIANTE" size="42">
+        <span class="input-group-addon" style="font-size:12px;"><b>Folio</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="FOLIO_COMERCIANTE" id="FOLIO_COMERCIANTE" size="42" value="0">
+        <span class="input-group-addon" style="font-size:12px;"><b>Libro</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="LIBRO_COMERCIANTE" id="LIBRO_COMERCIANTE" size="42" value="0">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" style="font-size:12px;"><b>3) Número de Empleados a contratar:</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="CANTIDAD_EMPLEADOS" id="CANTIDAD_EMPLEADOS" size="180" value="0">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon" style="font-size:12px;"><b>Fecha:</b></span>
+        <input style="font-size:12px;" class="form-control input-sm" name="FECHA" id="FECHA" value="20/07/2024 16:11:34" disabled="">
+    </div>
+    <div class="input-group">
+        <span><b>F:</b></span>
+        <input type="text" class="input-sm " name="" id="" size="50" disabled="">
+    </div>
+    <br>
+ <h5 class="text-danger text-right" style="margin-right: 7%;">Este Documento debe Imprimirse en tamaño Oficio</h5>
+        <h4 class="text-center text-danger">Ingrese su correo para enviarle una copia de su solicitud a su correo</h4>
+        <center>
+            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalSolicitud" id="enviar_1" name="enviar_1">
+                Exportar a PDF
+            </button>
+        </center>
+ 
+
+
+
+    <div class="modal fade" id="ModalSolicitud" style="width:90%; left:5%;" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="mensajeModal">
+                    <h5 class="text-center" style="color: #0026ff"><b> Esta seguro, enviar esta solicitud, no podra modificar una vez enviado.</b></h5>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger btn-block" data-dismiss="modal" id="cancelar">Cancelar</button>
+                    <input type="submit" name="enviar" id="enviar" class="btn btn-primary btn-block" value="Exportar a PDF" onclick="regresar()">
+                    <a href="/formatoSolicitudes/Solicitudes/solicitud_inscrip_comerciante_individual_empresa" name="aceptar" id="aceptar" class="btn btn-success btn-block disabled" style="display:none;">Descargando en 3</a>
+                </div>
+            </div>
+        </div>
+    </div> </form><script>
+  
+    function checkIfChecked() {
+        if (document.getElementById("INSCRI_COMERCIANTE_INDIVIDUAL").checked) {
+          
+            document.getElementById("NOMBRE_PROPIETARIO").disabled = true;
+            document.getElementById("INSCRI_COMERCIANTE_INDIVIDUAL").value = true;
+        }
+      
+
+
+
+
+        if (document.getElementById("INSCRI_EMPRESA").checked) {
+            document.getElementById("NOMBRE_PROPIETARIO").disabled = false;
+            document.getElementById("INSCRI_EMPRESA").value = true;
+        } else {
+            document.getElementById("NOMBRE_PROPIETARIO").disabled = true;
+            document.getElementById("NOMBRE_PROPIETARIO").value = null;
+
+
+        }
+    }
+
+ 
+
+
+    function inscrib_iniciales() {
+        if (document.getElementById("INICIO").checked) {
+            document.getElementById("AL_INSCRIBIRSE").disabled = true;
+            document.getElementById("FECHA_INICIO").disabled = false;
+            document.getElementById("INICIO").value = true;
+
+
+        }
+        else {
+            document.getElementById("AL_INSCRIBIRSE").disabled = false;
+            document.getElementById("FECHA_INICIO").disabled = true;
+            document.getElementById("FECHA_INICIO").value = null;
+        }
+        if (document.getElementById("AL_INSCRIBIRSE").checked) {
+            document.getElementById("INICIO").disabled = true;
+            document.getElementById("FECHA_INICIO").disabled = true;
+            document.getElementById("AL_INSCRIBIRSE").value = true;
+
+        }
+        else {
+            document.getElementById("INICIO").disabled = false;
+
+        }
+
+    }
+  
+    function select_suc_cat_unica() {
+        if (document.getElementById("CATEGORIA_UNICA").checked) {
+            document.getElementById("CATEGORIA_SUCURSAL").disabled = true;
+            document.getElementById("CATEGORIA_UNICA").value = true;
+        } else {
+            document.getElementById("CATEGORIA_SUCURSAL").disabled = false;
+        }
+        if (document.getElementById("CATEGORIA_SUCURSAL").checked) {
+            document.getElementById("CATEGORIA_UNICA").disabled = true;
+            document.getElementById("CATEGORIA_SUCURSAL").value = true;
+        } else {
+            document.getElementById("CATEGORIA_UNICA").disabled = false;
+        }
+    }
+
+</script>
+
+                <footer>
+                    <center>
+                        <p style="font-size:14px;">© 2024 - Registro Mercantil General de la República</p>
+                    </center>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#form').addClass('animated fadeInDown');
+            $("input:text:visible:first").focus();
+        });
+        $("#enviar_1").on("click", function valida_campos() { 
+
+            var NOMBRE = $("#P_NOMBRE").val(); 
+            if (NOMBRE == "") {
+                cant = $("#P_NOMBRE").focus();
+                $("#P_NOMBRE").attr("placeholder", "Ingrese Nombre").css({ "background-color": "white", "border": "1px solid #c61331" })
+                return false
+            } else {
+                $("#P_NOMBRE").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+            }
+            var apellido = $("#P_APELLIDO").val(); 
+            if (apellido == "") {
+                apellido = $("#P_APELLIDO").focus();
+                $("#P_APELLIDO").attr("placeholder", "Ingrese Apellido").css({ "background-color": "white", "border": "1px solid #c61331" })
+                return false
+            } else {
+                $("#P_APELLIDO").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" });
+            } 
+            var anios = $("#EDAD").val(); 
+            if (anios == 0) {
+                anios = $("#EDAD").focus();
+                document.getElementById("EDAD").value = "";
+                $("#EDAD").attr("placeholder", "Ingrese Edad").css({ "background-color": "white", "border": "1px solid #c61331" })
+                return false
+            } else {
+                $("#EDAD").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" });
+            } 
+
+            estado_civil = document.getElementById("ESTADO_CIVIL").value;
+
+            if (estado_civil == "" || estado_civil == null || estado_civil == 0) {
+                estado = $("#ESTADO_CIVIL").focus();
+                $("#ESTADO_CIVIL").attr("placeholder", "Seleccione una Opción").css({ "background-color": "white", "border": "1px solid #c61331" })
+                return false
+            }
+            else {
+                $("#ESTADO_CIVIL").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" });
+            } 
+            var nacionalidad = $("#NACIONALIDAD").val(); 
+            if (nacionalidad == 0) {
+                nacionalidad = $("#NACIONALIDAD").focus();
+                document.getElementById("NACIONALIDAD").value = "";
+                $("#NACIONALIDAD").attr("placeholder", "Ingrese Nacionalidad").css({ "background-color": "white", "border": "1px solid #c61331" })
+                return false
+            } else {
+                $("#NACIONALIDAD").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" });
+            } 
+
+            var profesion = $("#PROFESION").val(); 
+            if (profesion == 0) {
+                profesion = $("#PROFESION").focus();
+                document.getElementById("PROFESION").value = "";
+                $("#PROFESION").attr("placeholder", "Ingrese Profesion").css({ "background-color": "white", "border": "1px solid #c61331" })
+                return false
+            } else {
+                $("#PROFESION").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" });
+            } 
+
+
+            var domicilio = $("#DEPARTAMENTO").val(); 
+            if (domicilio == 0) {
+                domicilio = $("#DEPARTAMENTO").focus();
+                document.getElementById("DEPARTAMENTO").value = "";
+                $("#DEPARTAMENTO").attr("placeholder", "Ingrese Departamento").css({ "background-color": "white", "border": "1px solid #c61331" })
+                return false
+            } else {
+                $("#DEPARTAMENTO").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" });
+            } 
+
+
+
+            var direccion = $("#DIRECCION").val(); 
+            if (direccion == 0) {
+                direccion = $("#DIRECCION").focus();
+                document.getElementById("DIRECCION").value = "";
+                $("#DIRECCION").attr("placeholder", "Ingrese Direccion").css({ "background-color": "white", "border": "1px solid #c61331" })
+                return false
+            } else {
+                $("#DIRECCION").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" });
+            } 
+            if (document.getElementById("DPI_PER").checked == false && document.getElementById("PASAPORTE_PER").checked == false)
+            {
+                var dpi_ = $("#DPI_PER").val();
+                dpi_ = $("#DPI_PER").focus();
+                $('#seleccion_DPI_Pasaporte').html("Seleccione DPI ó Pasaporte");
+                return false
+            }
+            else {
+                $('#seleccion_DPI_Pasaporte').html("");
+            }  
+
+            if (document.getElementById("DPI_PER").checked) {   
+                dpi = document.getElementById("DPI").value;
+                if (dpi == 0) {  
+                    dpi = $("#DPI").focus();
+                    document.getElementById("DPI").value = "";
+                    $("#DPI").attr("placeholder", "Ingrese el DPI").css({ "background-color": "white", "border": "1px solid #c61331" })
+                    return false
+                }
+                else if (!(/^\d{13}$/.test(dpi))) { 
+                    dpi = $("#DPI").focus();
+                    document.getElementById("DPI").value = "";
+                    $("#DPI").attr("placeholder", "El DPI debe de tener 13 numeros sin espacio").css({ "background-color": "white", "border": "1px solid #c61331" })
+                    return false
+                }
+                else {
+                    $("#DPI").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+                }
+            } 
+
+            if (document.getElementById("PASAPORTE_PER").checked) { 
+                var pass = $("#PASAPORTE").val(); 
+                if (pass == "") {
+                    pass = $("#PASAPORTE").focus();
+                    $("#PASAPORTE").attr("placeholder", "Ingrese Pasaporte").css({ "background-color": "white", "border": "1px solid #c61331" })
+                    return false
+                } else {
+                    $("#PASAPORTE").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+                }
+            }
+
+
+            var telefono = $("#TELEFONO").val();    
+            if (telefono != "") {
+                tel = document.getElementById("TELEFONO").value;
+                if (!(/^\d{8}$/.test(tel))) { 
+                    dpi = $("#TELEFONO").focus();
+                    document.getElementById("TELEFONO").value = "";
+                    $("#TELEFONO").attr("placeholder", "El Teléfono debe tener 8 numeros sin espacio").css({ "background-color": "white", "border": "1px solid #c61331" })
+                    return false
+                }
+
+                else {
+                    $("#TELEFONO").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+                }
+            }
+
+            var correo = $("#CORREO").val();
+            email = document.getElementById("CORREO").value;
+            if (correo != "") {
+                if (!(/^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-]+)\.)+([a-zA-Z0-9]{2,4})+$/.test(email))) {
+                    correo = $("#CORREO").focus();
+                    document.getElementById("CORREO").value = "";
+                    $("#CORREO").attr("placeholder", "El Correo no es valido").css({ "background-color": "white", "border": "1px solid #c61331" })
+                    return false
+                }
+
+                else {
+                    $("#CORREO").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+                }
+            }
+            if (document.getElementById("INSCRI_COMERCIANTE_INDIVIDUAL").checked == false && document.getElementById("INSCRI_EMPRESA").checked == false) {
+                $("#INSCRI_COMERCIANTE_INDIVIDUAL").focus();
+                $("#selecion").html("Seleccione una Opción"); 
+                return false
+            }
+            else {
+                $("#selecion").html("");
+            }
+            if ( document.getElementById("INSCRI_EMPRESA").checked == true) {
+                if (document.getElementById("INSCRI_EMPRESA").checked == true) {
+                    var propietario = $("#NOMBRE_PROPIETARIO").val();
+                    if (propietario == "") {
+                        propietario = $("#NOMBRE_PROPIETARIO").focus();
+                        $("#NOMBRE_PROPIETARIO").attr("placeholder", "El Campo no debe ser nulo").css({ "background-color": "white", "border": "1px solid #c61331" })
+                        return false
+                    } else {
+                        $("#NOMBRE_PROPIETARIO").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+
+                    }
+                }
+
+                var nombre_c = $("#NOMBRE_COMERCIAL").val(); 
+                if (nombre_c == "") {
+                    nombre_c = $("#NOMBRE_COMERCIAL").focus();
+                    $("#NOMBRE_COMERCIAL").attr("placeholder", "Ingrese Nombre Comercial").css({ "background-color": "white", "border": "1px solid #c61331" })
+                    return false
+                } else {
+                    $("#NOMBRE_COMERCIAL").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+                }
+                var direccion_c = $("#DIRECCION_COMERCIAL").val(); 
+                if (direccion_c == "") {
+                    direccion_c = $("#DIRECCION_COMERCIAL").focus();
+                    $("#DIRECCION_COMERCIAL").attr("placeholder", "Ingrese la Dirección Comercial").css({ "background-color": "white", "border": "1px solid #c61331" })
+                    return false
+                } else {
+                    $("#NOMBRE_COMDIRECCION_COMERCIALERCIAL").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+                }
+                var objeto = $("#OBJETO").val(); 
+                if (objeto == "") {
+                    objeto = $("#OBJETO").focus();
+                    $("#OBJETO").attr("placeholder", "Ingrese el Objeto").css({ "background-color": "white", "border": "1px solid #c61331" })
+                    return false
+                } else {
+                    $("#OBJETO").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+                }
+                if (document.getElementById("INICIO").checked == false && document.getElementById("AL_INSCRIBIRSE").checked == false) {
+                    $("#selecion_1").html("Seleccione si es al Inscribirse o al Inicio"); 
+                    return false
+                }
+                else {
+                    $("#selecion_1").html("");
+                }
+                if (document.getElementById("INICIO").checked == true) {
+                    inicio = $("#FECHA_INICIO").val();
+                    if (inicio == null || inicio == "") {
+                        $("#FECHA_INICIO").focus();
+                        $("#FECHA_INICIO").attr("placeholder", "Ingrese la fecha").css({ "background-color": "white", "border": "1px solid #c61331" })
+                        $("#select_fecha").html("Ingrese la Fecha");
+                        return false
+                    } else {
+                        $("#FECHA_INICIO").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+                        $("#select_fecha").html("");
+                    }
+                } 
+                var capi = $("#CAPITAL").val(); 
+                if (capi == "") {
+                    capi = $("#CAPITAL").focus();
+                    document.getElementById("CAPITAL").value = "";
+                    $("#CAPITAL").attr("placeholder", "Ingrese el Capital").css({ "background-color": "white", "border": "1px solid #c61331" })
+                    return false
+                } else {
+                    $("#CAPITAL").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+                }
+                if (document.getElementById("CATEGORIA_UNICA").checked == false && document.getElementById("CATEGORIA_SUCURSAL").checked == false) {
+                    $("#seleccion_2").html("Seleccione una Opción"); 
+                    return false
+                }
+                else {
+                    $("#seleccion_2").html("");
+                }
+                empleado = document.getElementById("CANTIDAD_EMPLEADOS").value;
+                if (empleado == 0) {
+                    empleado = $("#CANTIDAD_EMPLEADOS").focus();
+                    document.getElementById("CANTIDAD_EMPLEADOS").value = "";
+                    $("#CANTIDAD_EMPLEADOS").attr("placeholder", "Ingrese la Cantidad de Empleados").css({ "background-color": "white", "border": "4px solid #c61331" })
+                    return false
+                } else {
+                    $("#CANTIDAD_EMPLEADOS").attr("placeholder", "").css({ "background-color": "white", "border": "1px solid #14C150" })
+
+                }
+            }
+
+        });
+
+    </script>
+
+
+    
+    <script type="text/javascript">
+        $(window).on('beforeunload', function () {
+            $("input[type=submit], input[type=button]").prop("disabled", "disabled");
+        });
+
+    </script>
+
+</body></html>
